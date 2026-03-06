@@ -29,7 +29,7 @@ html {
 body {
   background-color: var(--charcoal);
   color: var(--cream);
-  font-family: 'IBM Plex Sans Arabic', 'Tajawal', 'IBM Plex Sans', sans-serif;
+  font-family: var(--font-ibm-plex-arabic), var(--font-tajawal), 'IBM Plex Sans Arabic', 'Tajawal', 'IBM Plex Sans', sans-serif;
   overflow-x: hidden;
   direction: rtl;
   -webkit-font-smoothing: antialiased;

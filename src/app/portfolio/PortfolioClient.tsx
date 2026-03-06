@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -58,12 +58,30 @@ function PortfolioItem({ project }: { project: Project }) {
   const [showModal, setShowModal] = useState(false);
   const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const clearTimer = useCallback(() => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+      longPressTimer.current = null;
+    }
+  }, []);
+
+  // Clean up timer on unmount
+  useEffect(() => {
+    return () => clearTimer();
+  }, [clearTimer]);
+
   const handleMouseDown = () => { longPressTimer.current = setTimeout(() => setShowModal(true), 500); };
-  const handleMouseUp = () => { if (longPressTimer.current) clearTimeout(longPressTimer.current); };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setShowModal(true);
+    }
+  };
 
   return (
     <>
-      <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} onClick={() => setShowModal(true)} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp} onTouchStart={handleMouseDown} onTouchEnd={handleMouseUp} className="relative rounded-2xl overflow-hidden group cursor-pointer break-inside-avoid mb-4">
+      <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} onClick={() => setShowModal(true)} onMouseDown={handleMouseDown} onMouseUp={clearTimer} onMouseLeave={clearTimer} onTouchStart={handleMouseDown} onTouchEnd={clearTimer} onKeyDown={handleKeyDown} tabIndex={0} role="button" aria-label={`عرض تفاصيل ${project.title}`} className="relative rounded-2xl overflow-hidden group cursor-pointer break-inside-avoid mb-4 focus-visible:ring-2 focus-visible:ring-[#B8860B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0f0f]">
         <ImageWithFallback src={project.image} alt={project.title} className="w-full object-cover transition-transform duration-700 group-hover:scale-110" style={{ aspectRatio: project.id % 3 === 0 ? "3/4" : project.id % 2 === 0 ? "4/5" : "1/1" }} loading="lazy" />
         <div className="absolute inset-0 img-overlay" />
         <div className="absolute inset-0 bg-[#B8860B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -11,7 +11,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     <div
       className="min-h-screen bg-[#0f0f0f] text-[#F5F5DC]"
       dir="rtl"
-      style={{ fontFamily: "'IBM Plex Sans Arabic', 'Tajawal', 'IBM Plex Sans', sans-serif" }}
+      style={{ fontFamily: "var(--font-ibm-plex-arabic), var(--font-tajawal), 'IBM Plex Sans Arabic', 'Tajawal', 'IBM Plex Sans', sans-serif" }}
     >
       <Navbar />
 

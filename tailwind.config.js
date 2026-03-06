@@ -15,8 +15,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["'IBM Plex Sans Arabic'", "'Tajawal'", "'IBM Plex Sans'", 'sans-serif'],
-        tajawal: ["'Tajawal'", "'IBM Plex Sans Arabic'", 'sans-serif'],
+        sans: ["var(--font-ibm-plex-arabic)", "var(--font-tajawal)", "'IBM Plex Sans Arabic'", "'Tajawal'", "'IBM Plex Sans'", 'sans-serif'],
+        tajawal: ["var(--font-tajawal)", "var(--font-ibm-plex-arabic)", 'sans-serif'],
       },
       colors: {
         charcoal: {

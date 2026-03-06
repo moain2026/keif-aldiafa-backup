@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Sans_Arabic, Tajawal } from "next/font/google";
 import "@/styles/globals.css";
 import {
   generateLocalBusinessSchema,
@@ -7,6 +8,22 @@ import {
 } from "@/lib/schema";
 
 const SITE_URL = "https://keifaldiafa.com";
+
+const ibmPlexArabic = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic", "latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-ibm-plex-arabic",
+  preload: true,
+});
+
+const tajawal = Tajawal({
+  subsets: ["arabic", "latin"],
+  weight: ["300", "400", "500", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-tajawal",
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: {
@@ -91,7 +108,6 @@ export const metadata: Metadata = {
     "mobile-web-app-capable": "yes",
     "application-name": "كيف الضيافة",
     "format-detection": "telephone=no",
-    "google-site-verification": "",
   },
   category: "hospitality",
 };
@@ -113,18 +129,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ar" dir="rtl" className="scroll-smooth">
+    <html
+      lang="ar"
+      dir="rtl"
+      className={`scroll-smooth ${ibmPlexArabic.variable} ${tajawal.variable}`}
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
-          rel="stylesheet"
-        />
         {/* Organization Schema */}
         <script
           type="application/ld+json"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -79,6 +79,21 @@ export default function OfferingsClient() {
   const [activeCategory, setActiveCategory] = useState(0);
   const [selectedItem, setSelectedItem] = useState<OfferingItem | null>(null);
   const currentCat = categories[activeCategory];
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedItem(null);
+    };
+    if (selectedItem) {
+      document.addEventListener("keydown", handleEsc);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "";
+    };
+  }, [selectedItem]);
 
   return (
     <div>

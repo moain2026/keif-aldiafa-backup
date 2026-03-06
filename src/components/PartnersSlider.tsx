@@ -74,7 +74,11 @@ export function PartnersSlider() {
     emblaApi.on("select", onSelect);
     emblaApi.on("pointerDown", () => setIsDragging(true));
     emblaApi.on("pointerUp", () => setIsDragging(false));
-    return () => { emblaApi.off("select", onSelect); };
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("pointerDown", () => setIsDragging(true));
+      emblaApi.off("pointerUp", () => setIsDragging(false));
+    };
   }, [emblaApi, onSelect]);
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);

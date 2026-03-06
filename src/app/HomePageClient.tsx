@@ -144,9 +144,9 @@ export function HomePageClient() {
       </section>
 
       {/* STATS BAR */}
-      <section className="py-8 px-4" style={{ background: "linear-gradient(90deg, rgba(184,134,11,0.04) 0%, rgba(184,134,11,0.08) 50%, rgba(184,134,11,0.04) 100%)", borderTop: "1px solid rgba(184,134,11,0.1)", borderBottom: "1px solid rgba(184,134,11,0.1)" }}>
+      <section className="py-8 px-4" aria-label="إحصائيات كيف الضيافة" style={{ background: "linear-gradient(90deg, rgba(184,134,11,0.04) 0%, rgba(184,134,11,0.08) 50%, rgba(184,134,11,0.04) 100%)", borderTop: "1px solid rgba(184,134,11,0.1)", borderBottom: "1px solid rgba(184,134,11,0.1)" }}>
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          {stats.map((s, i) => (<motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}><p className="gold-gradient-text" style={{ fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 900, fontFamily: "'Tajawal', sans-serif" }}>{s.num}</p><p className="text-[#F5F5DC]/55 text-sm mt-1">{s.label}</p></motion.div>))}
+          {stats.map((s, i) => (<motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}><p className="gold-gradient-text" style={{ fontSize: "clamp(1.6rem, 4vw, 2.2rem)", fontWeight: 900, fontFamily: "var(--font-tajawal), 'Tajawal', sans-serif" }}>{s.num}</p><p className="text-[#F5F5DC]/55 text-sm mt-1">{s.label}</p></motion.div>))}
         </div>
       </section>
 

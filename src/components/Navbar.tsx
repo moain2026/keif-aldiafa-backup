@@ -168,8 +168,8 @@ export default function Navbar() {
               <span style={{ fontWeight: 600 }}>اتصال</span>
             </a>
           </div>
-          <motion.button onClick={toggleMenu} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.93 }} className="flex items-center gap-2 px-5 py-2.5 rounded-full text-[#0f0f0f] min-h-[44px]" style={{ background: menuOpen ? "linear-gradient(135deg, #8B6914, #B8860B)" : "linear-gradient(135deg, #B8860B, #D4A017)", fontWeight: 700, fontSize: "0.85rem", boxShadow: "0 4px 20px rgba(184,134,11,0.4)" }} aria-label={menuOpen ? "إغلاق القائمة" : "فتح القائمة"} aria-expanded={menuOpen}>
-            <motion.span animate={{ rotate: menuOpen ? 45 : 0 }} transition={{ duration: 0.25 }}>{menuOpen ? "✕" : "☰"}</motion.span>
+          <motion.button onClick={toggleMenu} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.93 }} className="flex items-center gap-2 px-5 py-2.5 rounded-full text-[#0f0f0f] min-h-[44px]" style={{ background: menuOpen ? "linear-gradient(135deg, #8B6914, #B8860B)" : "linear-gradient(135deg, #B8860B, #D4A017)", fontWeight: 700, fontSize: "0.85rem", boxShadow: "0 4px 20px rgba(184,134,11,0.4)" }} aria-label={menuOpen ? "إغلاق القائمة" : "فتح القائمة"} aria-expanded={menuOpen} aria-controls="mobile-nav-menu">
+            <motion.span aria-hidden="true" animate={{ rotate: menuOpen ? 45 : 0 }} transition={{ duration: 0.25 }}>{menuOpen ? "✕" : "☰"}</motion.span>
             <span>القائمة</span>
           </motion.button>
         </div>
@@ -180,7 +180,7 @@ export default function Navbar() {
         {menuOpen && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm" onClick={closeMenu} />
-            <motion.nav initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 28, stiffness: 280 }} className="fixed bottom-0 left-0 right-0 z-[70] rounded-t-3xl overflow-hidden" style={{ background: "linear-gradient(160deg, rgba(18,14,5,0.98) 0%, rgba(12,10,3,0.99) 100%)", backdropFilter: "blur(30px) saturate(200%)", borderTop: "1px solid rgba(184,134,11,0.25)", boxShadow: "0 -20px 80px rgba(184,134,11,0.1)", paddingBottom: "max(100px, calc(80px + env(safe-area-inset-bottom)))" }} role="navigation" aria-label="القائمة الرئيسية">
+            <motion.nav initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ type: "spring", damping: 28, stiffness: 280 }} id="mobile-nav-menu" className="fixed bottom-0 left-0 right-0 z-[70] rounded-t-3xl overflow-hidden" style={{ background: "linear-gradient(160deg, rgba(18,14,5,0.98) 0%, rgba(12,10,3,0.99) 100%)", backdropFilter: "blur(30px) saturate(200%)", borderTop: "1px solid rgba(184,134,11,0.25)", boxShadow: "0 -20px 80px rgba(184,134,11,0.1)", paddingBottom: "max(100px, calc(80px + env(safe-area-inset-bottom)))" }} role="navigation" aria-label="القائمة الرئيسية">
               <div className="max-w-lg mx-auto px-5 pt-6">
                 <div className="w-10 h-1 bg-[#B8860B]/40 rounded-full mx-auto mb-5" />
                 <div className="flex items-center justify-center gap-3 mb-6">

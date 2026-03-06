@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -52,7 +52,7 @@ const categories: ServiceCategory[] = [
 function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () => void }) {
   const [selectedOutfit, setSelectedOutfit] = useState(0);
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[80] flex items-center justify-center p-4" onClick={onClose}>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[80] flex items-center justify-center p-4" onClick={onClose} role="dialog" aria-modal="true" aria-label={`تفاصيل خدمة ${service.title}`}>
       <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
       <motion.div initial={{ opacity: 0, scale: 0.92, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.92, y: 30 }} transition={{ type: "spring", damping: 25, stiffness: 250 }} onClick={(e) => e.stopPropagation()} className="relative max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-3xl" style={{ background: "linear-gradient(160deg, rgba(25,20,8,0.98), rgba(15,12,5,0.99))", border: "1px solid rgba(184,134,11,0.25)", boxShadow: "0 40px 80px rgba(0,0,0,0.8)" }}>
         <button onClick={onClose} className="absolute top-4 left-4 z-10 w-10 h-10 rounded-full flex items-center justify-center text-[#F5F5DC]/60 hover:text-[#F5F5DC] transition-colors" style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(10px)" }}>✕</button>
@@ -112,6 +112,21 @@ function ServiceCard({ service, onClick, index }: { service: ServiceItem; onClic
 export default function ServicesClient() {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedService(null);
+    };
+    if (selectedService) {
+      document.addEventListener("keydown", handleEsc);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "";
+    };
+  }, [selectedService]);
 
   const currentCategory = categories[activeTab];
 
