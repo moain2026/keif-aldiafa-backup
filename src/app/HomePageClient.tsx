@@ -50,7 +50,20 @@ export function HomePageClient() {
       {/* HERO */}
       <section ref={heroRef} className="relative h-screen min-h-[600px] max-h-[950px] overflow-hidden" aria-label="الشاشة الرئيسية">
         <motion.div className="absolute inset-0" style={{ y: heroY }}>
-          <ImageWithFallback src={HERO_IMG} alt="كيف الضيافة - خدمات الضيافة الفاخرة" className="w-full h-[110%] object-cover object-center" priority={true} />
+          {/* صورة الهواتف والأجهزة الصغيرة */}
+          <ImageWithFallback
+            src="https://raw.githubusercontent.com/moain2026/img/main/hospitality_1.webp"
+            alt="كيف الضيافة - خدمات الضيافة الفاخرة"
+            className="block md:hidden w-full h-[110%] object-cover object-center"
+            priority={true}
+          />
+          {/* صورة الشاشات الكبيرة واللابتوب */}
+          <ImageWithFallback
+            src="https://raw.githubusercontent.com/moain2026/img/main/hospitality_2.webp"
+            alt="كيف الضيافة - خدمات الضيافة الفاخرة"
+            className="hidden md:block w-full h-[110%] object-cover object-center"
+            priority={true}
+          />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0f0f0f]/60 via-[#0f0f0f]/25 to-[#0f0f0f]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f0f]/40 via-transparent to-transparent" />
