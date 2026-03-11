@@ -57,11 +57,18 @@ function ServiceModal({ service, onClose }: { service: ServiceItem; onClose: () 
       <motion.div initial={{ opacity: 0, scale: 0.92, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.92, y: 30 }} transition={{ type: "spring", damping: 25, stiffness: 250 }} onClick={(e) => e.stopPropagation()} className="relative max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-3xl" style={{ background: "linear-gradient(160deg, rgba(25,20,8,0.98), rgba(15,12,5,0.99))", border: "1px solid rgba(184,134,11,0.25)", boxShadow: "0 40px 80px rgba(0,0,0,0.8)" }}>
         <button onClick={onClose} className="absolute top-4 left-4 z-10 w-10 h-10 rounded-full flex items-center justify-center text-[#F5F5DC]/60 hover:text-[#F5F5DC] transition-colors" style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(10px)" }}>✕</button>
         <div className="relative h-64 sm:h-80 overflow-hidden rounded-t-3xl">
-          <ImageWithFallback src={service.img} alt={service.title} className="w-full h-full object-cover" />
+          <ImageWithFallback
+            src={service.outfits.length > 0 ? service.outfits[selectedOutfit].img : service.img}
+            alt={service.outfits.length > 0 ? service.outfits[selectedOutfit].name : service.title}
+            className="w-full h-full object-cover transition-all duration-500"
+          />
           <div className="absolute inset-0 img-overlay" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <p className="text-[#B8860B] text-xs mb-1" style={{ letterSpacing: "0.15em" }}>{service.subtitle}</p>
             <h2 className="text-[#F5F5DC]" style={{ fontSize: "1.8rem", fontWeight: 800}}>{service.title}</h2>
+            {service.outfits.length > 0 && (
+              <p className="text-[#F5F5DC]/70 text-sm mt-1">{service.outfits[selectedOutfit].desc}</p>
+            )}
           </div>
         </div>
         <div className="p-6 sm:p-8">
