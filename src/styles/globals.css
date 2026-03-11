@@ -29,12 +29,16 @@ html {
 body {
   background-color: var(--charcoal);
   color: var(--cream);
-  font-family: var(--font-ibm-plex-arabic), var(--font-tajawal), 'IBM Plex Sans Arabic', 'Tajawal', 'IBM Plex Sans', sans-serif;
+  font-family: var(--font-ibm-plex-arabic), 'IBM Plex Sans Arabic', sans-serif;
   overflow-x: hidden;
   direction: rtl;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeSpeed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-amiri), 'Amiri', serif;
 }
 
 /* ── Performance: GPU-accelerated animations ── */
