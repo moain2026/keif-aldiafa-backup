@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 
-import { HERO_IMG } from "@/lib/images";
+import { HERO_IMAGES } from "@/lib/images";
 
 const PartnersSlider = lazy(() =>
   import("@/components/PartnersSlider").then((m) => ({ default: m.PartnersSlider }))
@@ -50,18 +50,22 @@ export function HomePageClient() {
       {/* HERO */}
       <section ref={heroRef} className="relative h-screen min-h-[600px] max-h-[950px] overflow-hidden" aria-label="الشاشة الرئيسية">
         <motion.div className="absolute inset-0" style={{ y: heroY }}>
-          {/* صورة الهواتف والأجهزة الصغيرة */}
+          {/* صورة الهواتف والأجهزة الصغيرة — High-res local */}
           <ImageWithFallback
-            src="https://raw.githubusercontent.com/moain2026/img/main/hospitality_1.webp"
+            src={HERO_IMAGES.mobile}
             alt="كيف الضيافة - خدمات الضيافة الفاخرة"
             className="block md:hidden w-full h-[110%] object-cover object-center"
+            sizes="100vw"
+            quality={90}
             priority={true}
           />
-          {/* صورة الشاشات الكبيرة واللابتوب */}
+          {/* صورة الشاشات الكبيرة واللابتوب — High-res local */}
           <ImageWithFallback
-            src="https://raw.githubusercontent.com/moain2026/img/main/hospitality_2.webp"
+            src={HERO_IMAGES.desktop}
             alt="كيف الضيافة - خدمات الضيافة الفاخرة"
             className="hidden md:block w-full h-[110%] object-cover object-center"
+            sizes="100vw"
+            quality={90}
             priority={true}
           />
         </motion.div>
