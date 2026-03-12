@@ -17,12 +17,11 @@
  */
 
 // ═══════════════════════════════════════════════════════════════
-// HERO IMAGES
+// HERO IMAGES (High-res 3168px)
 // ═══════════════════════════════════════════════════════════════
 export const HERO_IMAGES = {
-  main: "/images/hero/hero-1.webp",
-  secondary: "/images/hero/hero-2.webp",
-  tertiary: "/images/hero/hero-3.webp",
+  desktop: "/images/hero/hero-desktop.webp",
+  mobile: "/images/hero/hero-mobile.webp",
 };
 
 // ═══════════════════════════════════════════════════════════════
@@ -96,8 +95,9 @@ export const PARTNER_LOGOS = Array.from({ length: 36 }, (_, i) => `/images/partn
 // CONVENIENCE SHORTCUTS — for quick access in components
 // ═══════════════════════════════════════════════════════════════
 
-/** Primary hero image */
-export const HERO_IMG = HERO_IMAGES.main;
+/** Primary hero image (desktop) */
+export const HERO_IMG = HERO_IMAGES.desktop;
+export const HERO_IMG_MOBILE = HERO_IMAGES.mobile;
 
 /** Coffee / Safarjia */
 export const COFFEE_IMG = SERVICES_MALE.safarjia[0];
