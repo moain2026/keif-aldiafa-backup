@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 
-import { HERO_IMG } from "@/lib/images";
+import { HERO_DESKTOP, HERO_MOBILE } from "@/lib/images";
 
 const PartnersSlider = lazy(() =>
   import("@/components/PartnersSlider").then((m) => ({ default: m.PartnersSlider }))
@@ -52,17 +52,25 @@ export function HomePageClient() {
         <motion.div className="absolute inset-0" style={{ y: heroY }}>
           {/* صورة الهواتف والأجهزة الصغيرة */}
           <ImageWithFallback
-            src="https://raw.githubusercontent.com/moain2026/img/main/hospitality_1.webp"
+            src={HERO_MOBILE}
             alt="كيف الضيافة - خدمات الضيافة الفاخرة"
             className="block md:hidden w-full h-[110%] object-cover object-center"
             priority={true}
+            quality={90}
+            sizes="100vw"
+            width={1080}
+            height={1920}
           />
           {/* صورة الشاشات الكبيرة واللابتوب */}
           <ImageWithFallback
-            src="https://raw.githubusercontent.com/moain2026/img/main/hospitality_2.webp"
+            src={HERO_DESKTOP}
             alt="كيف الضيافة - خدمات الضيافة الفاخرة"
             className="hidden md:block w-full h-[110%] object-cover object-center"
             priority={true}
+            quality={90}
+            sizes="100vw"
+            width={3168}
+            height={2112}
           />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0f0f0f]/60 via-[#0f0f0f]/25 to-[#0f0f0f]" />
